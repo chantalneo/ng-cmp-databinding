@@ -27,4 +27,18 @@ export class AppComponent {
       content: blueprintData.serverContent
     });
   }
+
+  onChangeFirst() {
+    this.serverElements[0].name = 'Changed!'; 
+    /* we couldn't use the element as an object because objects are the reference types, so we passed the object via input, therefore
+    both properties in the server element component, this one here and the object in the array of server elements here in the app 
+    component, they both point to the same place in memory and therefore if we change the name there, it will update in the child component, 
+    in the server element component but it will not trigger ngOnChanges because technically, the property we're binding to, we use here with 
+    @input, that didn't change the value of that didn't change it, it's still the same object in memory. 
+    */
+  }
+
+  onDestroyFirst() {
+    this.serverElements.splice(0, 1);
+  }
 }
